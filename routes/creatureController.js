@@ -37,3 +37,16 @@ router.post('/', async (req, res) => {
     }
 })
 
+// Update Route
+router.put('/:id', async (req, res) => {
+    try {
+        const creatureId = req.params.id
+        const updatedCreature = req.body
+        const savedCreature = await Creature.findById(creatureId, updatedCreature)
+        res.json(savedCreature)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
