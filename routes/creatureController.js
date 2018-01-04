@@ -25,3 +25,15 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+// Create Route
+router.post('/', async (req, res) => {
+    try {
+        const newCreature = req.body
+        const savedCreature = await Creature.create(newCreature)
+        res.json(savedCreature)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
