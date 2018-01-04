@@ -5,6 +5,9 @@ const logger = require('morgan')
 const bodyParser = require('body-parser')
 const app = express()
 
+// Express Static Midleware
+app.use(express.static(`${__dirname}/client/build`))
+
 mongoose.Promise = global.Promise
 mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true})
 
@@ -20,8 +23,9 @@ db.on('open', () => {
 app.use(logger('dev'))
 app.use(bodyParser.json())
 
+// Route To React App
 app.get('/', (req, res) => {
-    res.send("Hello, World!")
+    res.sendFile(`${__dirname}/client/build/index.html`)
 })
 
 const PORT = process.env.PORT || 3001
