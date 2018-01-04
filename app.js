@@ -5,7 +5,7 @@ const logger = require('morgan')
 const bodyParser = require('body-parser')
 const app = express()
 
-mongoose.Promis = global.Promise
+mongoose.Promise = global.Promise
 mongoose.connect(process.env.MONGODB_URI, {useMongoClient: true})
 
 const db = mongoose.connection
