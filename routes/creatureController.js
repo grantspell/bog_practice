@@ -50,3 +50,16 @@ router.put('/:id', async (req, res) => {
     }
 })
 
+// Delete Route
+router.delete('/:id', async (req, res) => {
+    try {
+        const creatureId = req.params.id
+        await Creature.findByIdAndRemove(creatureId)
+        res.json({
+            msg: 'Sucessfully Deleted'
+        })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
